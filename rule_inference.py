@@ -7,10 +7,11 @@ import penn_treebank_tags
 import codecs
 import os
 
-OUTPUT_FILE_BGS = 'rule_inference_bgs.txt'
-OUTPUT_FILE_TGS = 'rule_inference_tgs.txt'
+OUTPUT_FILE_BGS = 'corpus_rules/rule_inference_bgs.txt'
+OUTPUT_FILE_TGS = 'corpus_rules/rule_inference_tgs.txt'
+CORPUS_FILE = 'corpus/nyt_top_stories.txt'
 
-f = open("nyt_top_stories.txt")
+f = open(CORPUS_FILE)
 lines = f.read().split('\n')
 sentence = ""
 for line in lines:
