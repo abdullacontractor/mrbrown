@@ -15,7 +15,7 @@ f = open(CORPUS_FILE)
 lines = f.read().split('\n')
 sentence = ""
 for line in lines:
-    sentence += line.decode('utf-8').strip()
+    sentence += line.strip()
 f.close()
 
 # sentence = """Hi, one two three my name is Abdulla Contractor. Do you want to play football tomorrow? Hi, my name is Abdulla Contractor"""
@@ -60,18 +60,17 @@ output_tgs = codecs.open(OUTPUT_FILE_TGS, 'a', 'utf-8')
 
 for k,prob in sorted_dist_bgs:
     t1, t2 = k
-    output_bgs.write(
-        unicode("%.2f"%(prob) + '\t' +\
-            penn_treebank_tags.getReadableTag(t1) + ' -> ' +\
-            penn_treebank_tags.getReadableTag(t2) + "\n",
-        'utf-8'))
+    if t1 in my_tags and not penn_treebank_tags.isForbidden(t2):
+        output_bgs.write(
+            str("%.2f"%(prob) + '\t' +\
+                penn_treebank_tags.getReadableTag(t1) + ' -> ' +\
+                penn_treebank_tags.getReadableTag(t2) + "\n"))
 
 for k,prob in sorted_dist_tgs:
     if (len(k) > 2):
         t1, t2, t3 = k
         output_tgs.write(
-            unicode("%.2f"%(prob) + '\t' +\
+            str("%.2f"%(prob) + '\t' +\
                 penn_treebank_tags.getReadableTag(t1) + ' -> ' +\
                 penn_treebank_tags.getReadableTag(t2) + ' -> ' +\
-                penn_treebank_tags.getReadableTag(t3) + "\n",
-            'utf-8'))
+                penn_treebank_tags.getReadableTag(t3) + "\n"))

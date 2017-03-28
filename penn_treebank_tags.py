@@ -42,3 +42,9 @@ def getReadableTag(tag):
         return __mapping[tag]
     else:
         return tag
+
+def isForbidden(tag):
+    if tag in __mapping:
+        return False
+    else:
+        return True
