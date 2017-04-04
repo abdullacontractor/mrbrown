@@ -1,0 +1,8 @@
+(deftemplate tag (slot type))
+(deftemplate word (slot type))
+(deftemplate pos (slot tag)(slot word))
+(assert (pos(tag DT)(word The)))
+(assert (pos(tag NN)(word dog)))
+(assert (pos(tag VBZ)(word is)))
+(assert (pos(tag JJ)(word big)))
+(assert (pos(tag .)(word .)))

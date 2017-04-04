@@ -1,4 +1,0 @@
-(deftemplate person (slot name)(slot age))
-(assert (dog))
-(assert (cat))
-(assert (person(age 23)(name John)))
