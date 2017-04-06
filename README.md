@@ -1,7 +1,7 @@
 # mrbrown
 English Language Knowledge Based System.
 
-KEN's part
+How to use the clp file.
 ```
 Clips > (clear)
 Clips > (load sentence.clp)
