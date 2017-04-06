@@ -1,7 +1,6 @@
 import nltk
 import sys
 import penn_treebank_tags
-import custom_model
 
 while True:
     sentence  = input()
@@ -11,10 +10,7 @@ while True:
     tags = [""]*len(tagged)
     for i in range(len(tagged)):
         word, tag = tagged[i]
-        if custom_model.isInModel(word):
-            tags[i] = custom_model.getCustomTag(word)
-        else:
-            tags[i] = tag
+        tags[i] = tag
 
     print(tags)
 
