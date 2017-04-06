@@ -26,15 +26,21 @@
    (bind ?num-of-rules 0)
    (switch ?n-gram
    (case 2 then
-   (loop-for-count (?root-count 1 ?num-of-root)
+    (printout t "creating incorrect bigram rules" crlf)
+    (loop-for-count (?root-count 1 ?num-of-root)
       (bind ?root (read r))
       (bind ?num-of-root-rule (read r))
       (loop-for-count (?count 1 ?num-of-root-rule)
         (bind ?num-of-rules (+ ?num-of-rules 1))
-        (assert (wrong-bigram-rule (root ?root)(wrong-rule (read r))))))
-        ))
+        (assert (wrong-bigram-rule (root ?root)(wrong-rule (read r)))))))
+    (case 3 then
+      (printout t "creating incorrect trigram rules" crlf)))
    (close)
    (printout t ?num-of-rules " rules created." crlf))
+
+;*********
+;* RULES *
+;*********
 
 (defrule MAIN::wrong-on-NN-VB-root-bigram
   (declare (salience 99))
