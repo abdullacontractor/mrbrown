@@ -9,7 +9,7 @@ def define_templates():
     py2clp.add_template("pos", ["tag", "word"])
 
 def take_new_sentence(s):
-    text = nltk.word_tokenize(s);
+    text = nltk.word_tokenize(s)
     add_sentence_as_facts(nltk.pos_tag(text))
 
 def add_sentence_as_facts(s):
