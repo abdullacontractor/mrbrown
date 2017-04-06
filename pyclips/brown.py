@@ -34,8 +34,8 @@ def define_templates():
 
 def add_bigram_as_fact(t1, t2):
     bigram_fact = clips.Fact(TEMPLATES["bigram"])
-    bigram_fact.Slots["tags"] = "%s-%s" % (t1[0], t2[0])
-    bigram_fact.Slots["words"] = "%s %s" % (t1[1], t2[1])
+    bigram_fact.Slots["words"] = "%s %s" % (t1[0], t2[0])
+    bigram_fact.Slots["tags"] = "%s-%s" % (t1[1], t2[1])
     # if bigram_fact.Exists:
     #     print MESSAGE_REPEAT
     # else:
