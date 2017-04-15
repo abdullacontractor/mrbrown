@@ -51,4 +51,6 @@
   (test (> ?err 0))
   =>
   (retract ?ferr)
-  (print t ?err " mistake(s) in the sentence" crlf crlf))
+  (if (> ?err 1)
+   then (print t ?err " mistakes in the sentence" crlf crlf)
+   else (print t ?err " mistake in the sentence" crlf crlf)))
