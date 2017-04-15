@@ -3,12 +3,12 @@
 ;*************
 
 (deftemplate MAIN::bigram
-   (slot tags)
-   (slot words))
+   (multislot tags)
+   (multislot words))
 
 (deftemplate wrong-bigram-rule
   (slot root)
-  (slot wrong-rule))
+  (multislot wrong-rule))
 
 (deffacts MAIN::test
   (error 0))
@@ -19,23 +19,23 @@
 
 (defrule MAIN::wrong-on-NN-VB-root-bigram
   (declare (salience 99))
-  (wrong-bigram-rule (root ?root&NN|NNS|VBP|VBD)(wrong-rule ?wrong-rule))
-  ?bg <- (bigram (tags ?wrong-rule) (words ?phrase))
+  (wrong-bigram-rule (root ?root&NN|NNS|VBP|VBD)(wrong-rule ?root ?tag2))
+  ?bg <- (bigram (tags ?root ?tag2) (words ?word1 ?word2))
   ?errf <- (error ?err)
   =>
   (retract ?bg ?errf)
   (assert (error (+ ?err 1)))
-  (print t ?phrase " contains " ?wrong-rule " error" crlf))
+  (capturerule t ?word1 ?root ?word2 ?tag2))
 
 (defrule MAIN::wrong-on-RB-JJ-root-bigram
   (declare (salience 88))
-  (wrong-bigram-rule (root ?root&RB|JJS|JJR|JJ)(wrong-rule ?wrong-rule))
-  ?bg <- (bigram (tags ?wrong-rule) (words ?phrase))
+  (wrong-bigram-rule (root ?root&RB|JJS|JJR|JJ)(wrong-rule ?root ?tag2))
+  ?bg <- (bigram (tags ?root ?tag2) (words ?word1 ?word2))
   ?errf <- (error ?err)
   =>
   (retract ?bg ?errf)
   (assert (error (+ ?err 1)))
-  (print t ?phrase " contains " ?wrong-rule " error" crlf crlf))
+  (capturerule t ?word1 ?root ?word2 ?tag2))
 
 ;;******************
 ;;* POSTPROCESSING *
