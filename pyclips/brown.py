@@ -13,7 +13,7 @@ MESSAGE_EXIT = "\ngood bye!\n"
 MESSAGE_ERROR = "Sorry you seem to have entered a single word. Would you like to try again?"
 MESSAGE_REPEAT = "You have mentioned this before!"
 PROMPT = ">>>"
-ERRORS = []
+ERRORS = [] #Tracks errors
 
 ############################### Helper Functions ######################################
 def define_init_rules():
