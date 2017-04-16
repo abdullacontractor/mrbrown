@@ -69,7 +69,7 @@ def add_wrong_rules():
 def feedback_to_user(errors, is_question):
     overall_feedback = ""
     for i, (word1, tag1, word2, tag2) in enumerate(errors):
-        overall_feedback += "%d)" % (int(i) + 1)
+        overall_feedback += "%d) " % (int(i) + 1)
         overall_feedback += Feedback.feedback(word1, tag1, word2, tag2, is_question)
         overall_feedback += "\n\n"
 
