@@ -94,7 +94,7 @@ class Feedback(object):
             return "'%s' cannot be followed by '%s'" % (root, leaf)
         #Special Cases
         elif error == "NN-JJ":
-            return "If the word '%s' is being used to describe the noun '%s' then the correct form might be '%s %s'. On the other hand, if the word '%s' is being used to describe an action on the object, then the sentence is correct." % (leaf, root, root, leaf, root)
+            return "If the word '%s' is being used to describe the noun '%s' then the correct form might be '%s %s'. On the other hand, if the word '%s' is being used to describe an action on the object, then the sentence is correct." % (leaf, root, leaf, root, root)
         elif error == "NN-RBR":
             return "If the phrase '%s something' is being used to describe the noun '%s' then the correct form might be '%s something %s'. On the other hand, if the word '%s' is being used to describe an action on the object, then the sentence is correct." % (leaf, root, leaf, root, leaf)
         elif error == "NN-PRP$" or error == "NNS-PRP$":
