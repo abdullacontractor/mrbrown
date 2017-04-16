@@ -25,17 +25,21 @@ def process_user_input(s):
 
     if len(text) == 1:
         print MESSAGE_ERROR
-        return
+        return False
 
     tags = nltk.pos_tag(text)
     add_tags_as_facts(tags) # add sentence as facts
+    if text[-1] == '?':
+        return True
+    else:
+        return False
 
 def execute():
     add_wrong_rules()
     clips.Run()
 
 def add_bigram_as_fact(t1, t2):
-    command = "(assert (bigram (tags %s %s) (words %s %s)))" % (t1[1], t2[1], t1[0], t2[0])
+    command = "(assert (bigram (tags %s %s) (words \"%s\" \"%s\")))" % (t1[1], t2[1], t1[0], t2[0])
     clips.SendCommand(command) # print command
 
 def add_tags_as_facts(tags):
@@ -62,11 +66,11 @@ def add_wrong_rules():
     file.close()
 
 ############################### Feedback System ######################################
-def feedback_to_user(errors):
+def feedback_to_user(errors, is_question):
     overall_feedback = ""
     for i, (word1, tag1, word2, tag2) in enumerate(errors):
         overall_feedback += "%d)" % (int(i) + 1)
-        overall_feedback += Feedback.feedback(word1, tag1, word2, tag2)
+        overall_feedback += Feedback.feedback(word1, tag1, word2, tag2, is_question)
         overall_feedback += "\n\n"
 
     return overall_feedback
@@ -124,10 +128,10 @@ def run_brown():
             print MESSAGE_EXIT
             break
 
-        process_user_input(user_input)
+        is_question = process_user_input(user_input)
         print
         execute()
-        print feedback_to_user(ERRORS)
+        print feedback_to_user(ERRORS, is_question)
         reset() # for eval cycle to reset
 
     sys.exit(0)

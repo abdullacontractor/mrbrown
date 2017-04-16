@@ -80,10 +80,10 @@ class Feedback(object):
             print
 
     @staticmethod
-    def feedback(word1, tag1, word2, tag2):
+    def feedback(word1, tag1, word2, tag2, is_question):
         # return Feedback.generate_message(error, TAGS[root], TAGS[leaf], False)
         error = "%s-%s" % (tag1, tag2)
-        feedback = Feedback.generate_message(error, word1, word2, False)
+        feedback = Feedback.generate_message(error, word1, word2, is_question)
         feedback += "\n[%s -> %s Error]" % (pos_mapping[tag1], pos_mapping[tag2])
         return feedback
 
